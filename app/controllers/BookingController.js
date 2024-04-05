@@ -51,7 +51,28 @@ module.exports.getLendingCharge = async (req,res,next)=>{
         return res.status(404).send({'error_message' : 'Request resource is not found.'})
     }
 
-    let charges = configData.charges;
+    let charges = configData.oldcharges;
+    let lendingCharges = { ...result[0], 'chages' : result[0]['days_to_return'] * charges }
+
+    return res.status(200).send({charges: lendingCharges})
+}
+module.exports.getLendingChargeWithType= async (req,res,next)=>{
+    const data = req.body.data
+    if(!data){
+        return res.status(400).send({'error_message' :'invalid params'})
+    }
+    console.log(data)
+    const query = {
+        'customerId' : data['customerId'],
+        'bookId': data['bookId']
+    }
+    const result = await BookingsService.fetchBookingWithType(query)
+    console.log(result)
+    if( result.length === 0){
+        return res.status(404).send({'error_message' : 'Request resource is not found.'})
+    }
+
+    let charges = configData.charges[result[0]['type']];
     let lendingCharges = { ...result[0], 'chages' : result[0]['days_to_return'] * charges }
 
     return res.status(200).send({charges: lendingCharges})
