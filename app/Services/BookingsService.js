@@ -11,3 +11,8 @@ module.exports.fetchAvailabilityByBookName = async (data) =>{
     const result = await sequelizeWrite.query(query, { replacements : data, type: QueryTypes.SELECT, raw: true })
     return result
 }
+module.exports.fetchBooking = async (data)=>{
+    let query = `select lend_date, days_to_return from bookingDetails where customerId = :customerId and bookId = :bookId;`
+    const result = await sequelizeWrite.query(query, { replacements : data, type: QueryTypes.SELECT, raw: true })
+    return result
+}
