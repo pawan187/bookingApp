@@ -1,18 +1,17 @@
 const Sequelize = require('sequelize');
 // var app = require('../app.js');
-
 const sequelizeWrite = new Sequelize(
-    "demo",
-    "root",
-    "root123", {
-    host: "localhost",
-    dialect: 'mysql',
-    pool: {
-      max: 1000,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
+  process.env.DB_Name,
+  process.env.DB_User,
+  process.env.DB_Pass, {
+  host: process.env.DB_Host,
+  dialect: 'mysql',
+  pool: {
+    max: 1000,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
 });
 
 sequelizeWrite
@@ -26,17 +25,17 @@ sequelizeWrite
 
 
 const sequelizeRead = new Sequelize(
-  "demo",
-    "root",
-    "root123", {
-    host: "localhost",
-    dialect: 'mysql',
-    pool: {
-      max: 1000,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
+  process.env["DB_Name"],
+  process.env["DB_User"],
+  process.env["DB_Pass"], {
+  host: process.env["DB_Host"],
+  dialect: 'mysql',
+  pool: {
+    max: 1000,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
 });
 
 sequelizeRead

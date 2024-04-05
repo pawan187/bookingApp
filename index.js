@@ -1,10 +1,13 @@
 var express = require('express');
 var cors = require('cors')
 var app = express();
+
+require('custom-env').env(app.get('env'));
+
 const createError = require('http-errors'),
-path = require('path'),
-bodyParser = require('body-parser'),
-bookingRoutes = require('./routes/routes');
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    bookingRoutes = require('./routes/routes');
 
 
 app.use(cors())
