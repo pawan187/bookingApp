@@ -52,7 +52,7 @@ module.exports.getLendingCharge = async (req,res,next)=>{
     }
 
     let charges = configData.oldcharges;
-    let lendingCharges = { ...result[0], 'chages' : result[0]['days_to_return'] * charges }
+    let lendingCharges = { ...result[0], 'charges' : result[0]['days_to_return'] * charges }
 
     return res.status(200).send({charges: lendingCharges})
 }
@@ -73,7 +73,31 @@ module.exports.getLendingChargeWithType= async (req,res,next)=>{
     }
 
     let charges = configData.charges[result[0]['type']];
-    let lendingCharges = { ...result[0], 'chages' : result[0]['days_to_return'] * charges }
+    let lendingCharges = { ...result[0], 'charges' : result[0]['days_to_return'] * charges }
+
+    return res.status(200).send({charges: lendingCharges})
+}
+
+module.exports.getLendingChargeWithTypeBydays = async (req,res,next)=>{
+    const data = req.body.data
+    if(!data){
+        return res.status(400).send({'error_message' :'invalid params'})
+    }
+    console.log(data)
+    const query = {
+        'customerId' : data['customerId'],
+        'bookId': data['bookId']
+    }
+    const result = await BookingsService.fetchBookingWithType(query)
+    console.log(result)
+    if( result.length === 0){
+        return res.status(404).send({'error_message' : 'Request resource is not found.'})
+    }
+
+    let chargesType = configData.chargesByDays[result[0]['type']];
+
+    let  charges = result[0]['days_to_return'] <= chargesType['minimumDays'] ? chargesType['minimumRent'] : result[0]['days_to_return'] * chargesType['normalRent']
+    let lendingCharges = { ...result[0], 'charges' : charges }
 
     return res.status(200).send({charges: lendingCharges})
 }
