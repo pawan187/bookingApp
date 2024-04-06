@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "7ca2fefe-3052-4f1a-8d9f-706a0b18c06c",
+		"name": "bokkingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21253005"
+	},
+	"item": [
+		{
+			"name": "bookingDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3005/booking",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "availability",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3005/booking",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lendingcharges",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\" :{\n        \"customerId\" : 1,\n        \"bookId\" : \"9c480ab4-4dc7-455e-9284-af60a3906c5f\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3005/booking/lending-charges",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"booking",
+						"lending-charges"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lendingchargeswithtype",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\" :{\n        \"customerId\" : 1,\n        \"bookId\" : \"9c480ab4-4dc7-455e-9284-af60a3906c5f\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3005/booking/lending-charges-with-charges",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"booking",
+						"lending-charges-with-charges"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lendingchargesbydays",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\" :{\n        \"customerId\" : 102,\n        \"bookId\" : \"9c480ab4-4dc7-455e-9284-af60a3906c5f\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3005/booking/lending-charges-byDays",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"booking",
+						"lending-charges-byDays"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
